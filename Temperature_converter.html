@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Temperature Converter</title>
+</head>
+<body>
+    <div class="converter">
+        <h2>Temperature Converter</h2>
+        <label for="fromUnit">From:</label>
+        <select id="fromUnit" class="">
+            <option value="C">Celcious</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+            <option value="R">Rankine</option>
+        </select>
+        <label to="toUnit">To:</label>
+        <select id="toUnit" class="">
+            <option value="C">Celcious</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+            <option value="R">Rankine</option>
+        </select>
+        <label for="temperature">Temperature</label>
+        <input type="number" id="temperature" placeholder="enter temperature">
+        <button onclick="convert()">Converter</button>
+
+        <label for="result">Result: </label>
+        <input type="text" id="result" readonly>
+
+    </div>
+    <script>
+        function convert(){
+            let fromUnit = document.getElementById('fromUnit').value;
+            let toUnit = document.getElementById('toUnit').value;
+            let temperature = parseFloat(document.getElementById('temperature').value);
+
+            let convertedValue;
+            let resultUint;
+
+            switch(fromUnit)
+            {
+                case 'C':
+                    if(toUnit==='F'){
+                        convertedValue = (temperature * 9/5) + 32;
+                        resultUint ='F'
+                    }
+                    else if(toUnit==='K'){
+                        convertedValue = temperature + 273.15;
+                        resultUint ='K'
+                    }
+                    else if(toUnit==='R'){
+                        convertedValue = temperature  + 273.15;
+                        resultUint ='R'
+                    }
+                    else{
+                        convertedValue = temperature ;
+                        resultUint ='C'
+                    }
+                    break;
+                    case 'F':
+                    if(toUnit==='C'){
+                        convertedValue = (temperature - 32) *5/9;
+                        resultUint ='C'
+                    }
+                    else if(toUnit==='K'){
+                        convertedValue = (temperature - 32) *5/9+ 273.15;
+                        resultUint ='K'
+                    }
+                    else if(toUnit==='R'){
+                        convertedValue = (temperature * 9/5) + 459.67;
+                        resultUint ='R'
+                    }
+                    else{
+                        convertedValue = temperature ;
+                        resultUint ='F'
+                    }
+                    break;
+                    case 'K':
+                    if(toUnit==='C'){
+                        convertedValue = temperature - 273.15;
+                        resultUint ='C'
+                    }
+                    else if(toUnit==='K'){
+                        convertedValue = (temperature - 273.15)* 9/5 +32 ;
+                        resultUint ='K'
+                    }
+                    else if(toUnit==='R'){
+                        convertedValue = temperature  * 9/5;
+                        resultUint ='R'
+                    }
+                    else{
+                        convertedValue = temperature ;
+                        resultUint ='K'
+                    }
+                    break;
+                    case 'R':
+                    if(toUnit==='C'){
+                        convertedValue = (temperature -491.67)*5/9;
+                        resultUint ='C'
+                    }
+                    else if(toUnit==='K'){
+                        convertedValue = temperature -459.67;
+                        resultUint ='K'
+                    }
+                    else if(toUnit==='R'){
+                        convertedValue = temperature * 5/9;
+                        resultUint ='R'
+                    }
+                    else{
+                        convertedValue = temperature ;
+                        resultUint ='R'
+                    }
+                    break;
+            }
+            document.getElementById('result').value = convertedValue.toFixed(2)+ ''+ resultUint;
+        }
+
+    </script>
+</body>
+</html>
